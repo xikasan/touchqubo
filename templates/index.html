@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>TouchQUBO</title>
+    <script>
+        var qubo = {{ qubo|tojson }};
+        var Nq = qubo.length;
+        var scores = {{ scores|tojson }};
+    </script>
+    <link rel="stylesheet" href={{ url_for('static', filename='css/main.css') }}>
+</head>
+<body>
+<div id="content">
+    <h1>TouchQUBO</h1>
+    <table id="qubo">
+        <script>
+            for (i = 0; i < Nq; i++) {
+                document.write("<tr>");
+                for (j = 0; j < Nq; j++) {
+                    document.write("<td id='qubo-"+i+"-"+j+"'>");
+                    document.write(Math.floor(qubo[i][j] * 100) / 100 );
+                    document.write("</td>");
+                }
+                document.write("</tr>");
+            }
+        </script>
+    </table>
+    <table id="score">
+        <tr>
+            <script>
+                for (i = 0; i < Nq; i++) {
+                    document.write("<td id='score-"+i+"'>");
+                    document.write(Math.floor(scores[i] * 100) / 100);
+                    document.write("</td>")
+                }
+            </script>
+        </tr>
+    </table>
+    <div id="run-button">
+        <a href="/run" id="run-link">GO ANNEAL</a>
+    </div>
+
+    <p id="debug">
+        debug <span id="debug-span-1">NONE</span>
+        <br><span id="debug-span-2">NONE</span>
+    </p>
+    <script src="static/js/display_qubo.js"></script>
+    <script src="static/js/touch.js"></script>
+</div>
+</body>
+</html>

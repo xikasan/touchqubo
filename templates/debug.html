@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>touchQUBO</title>
+    <style>
+        h1 {
+            text-align: center;
+            font-size: 6em;
+        }
+        #score {
+            text-align: center;
+            font-size: 10em;
+            font-weight: bold;
+            color: #ff6666
+        }
+
+        #return {
+            text-align: center;
+            font-size: 4em;
+        }
+    </style>
+</head>
+<body>
+<h1>Result</h1>
+<p id="score">
+    <script>
+        var score = {{ score|tojson }};
+        score = parseFloat(score)
+        document.write(Math.floor(score * 100) / 100)
+    </script>
+</p>
+
+<div id="return">
+    <a href="/"> Return to home</a>
+</div>
+</body>
+</html>
